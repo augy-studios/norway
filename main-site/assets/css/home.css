@@ -21,6 +21,10 @@
   top: 50%;
   transform: translateY(-50%);
   color: var(--muted);
+  /* Without an explicit stacking order, Chromium's backdrop-filter on the
+     input below can sample this icon into its blur instead of compositing
+     it above, leaving it all but invisible. */
+  z-index: 1;
 }
 
 #site-search {
