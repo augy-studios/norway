@@ -408,6 +408,49 @@ input:focus-visible,
   animation: fade-in-up 0.25s ease;
 }
 
+/* -- Loading spinner ------------------------------------------------------ */
+
+.skeleton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: rgba(255, 255, 255, 0.35);
+  border-radius: var(--radius-sm);
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.spinner {
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  overflow: visible;
+}
+
+.spinner .fish {
+  transform-origin: 20px 22px;
+  animation: salmon-jump 1.8s ease-in-out infinite;
+}
+
+@keyframes salmon-jump {
+  0% {
+    transform: translateY(16px) rotate(10deg);
+  }
+  35% {
+    transform: translateY(-13px) rotate(-14deg);
+  }
+  50% {
+    transform: translateY(-17px) rotate(-4deg);
+  }
+  65% {
+    transform: translateY(-13px) rotate(8deg);
+  }
+  100% {
+    transform: translateY(16px) rotate(10deg);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

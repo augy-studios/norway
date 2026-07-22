@@ -182,7 +182,6 @@
   els.backToResults.addEventListener("click", () => {
     if (ORGNR_RE.test(currentQuery)) {
       showPanel("idle");
-      els.input.value = "";
     } else {
       runSearch(currentQuery, currentPage);
     }

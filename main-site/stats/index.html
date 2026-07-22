@@ -73,11 +73,29 @@
                 <button type="button" class="range-btn" data-months="36" aria-pressed="false">36mo</button>
                 <button type="button" class="range-btn" data-months="60" aria-pressed="false">60mo</button>
             </div>
-            <button type="button" class="btn" id="retry-btn" hidden></button>
         </div>
 
         <div id="loading-state" class="state-panel glass">
-            <div class="skeleton" style="height:120px;"></div>
+            <div class="skeleton" style="height:120px;">
+                <svg class="spinner" viewBox="0 0 48 48" aria-hidden="true">
+                    <defs>
+                        <clipPath id="water-clip">
+                            <rect x="0" y="0" width="48" height="28" />
+                        </clipPath>
+                    </defs>
+                    <path d="M0 30 Q6 26 12 30 T24 30 T36 30 T48 30 V48 H0 Z" fill="#4a90d9" opacity="0.55" />
+                    <g clip-path="url(#water-clip)">
+                        <g class="fish" fill="#e8836f" stroke="#b85c46" stroke-width="0.6">
+                            <path d="M8 22 L2 17 L4 22 L2 27 Z" />
+                            <path d="M8 22 C10 16 22 15 28 19 C31 20.5 31 23.5 28 25 C22 29 10 28 8 22 Z" />
+                            <path d="M16 16 L19 11 L21 17 Z" />
+                            <circle cx="25" cy="20" r="1" fill="#5c2418" stroke="none" />
+                        </g>
+                    </g>
+                    <path d="M0 29 Q6 25 12 29 T24 29 T36 29 T48 29" fill="none" stroke="#3a76b8" stroke-width="1.5" opacity="0.85" />
+                </svg>
+                <span>Loading Statistics Norway data&hellip;</span>
+            </div>
         </div>
 
         <div id="error-state" class="state-panel glass is-error" hidden>

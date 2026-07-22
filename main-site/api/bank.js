@@ -6,7 +6,7 @@
 const BASE_URL = "https://data.norges-bank.no/api/data";
 const UPSTREAM_TIMEOUT_MS = 8000;
 
-const CURRENCIES = ["USD", "EUR", "GBP", "SEK", "DKK", "JPY", "CHF", "CNY"];
+const CURRENCIES = ["USD", "EUR", "GBP", "SEK", "DKK", "JPY", "CHF", "CNY", "SGD"];
 const MIN_DAYS = 7;
 const MAX_DAYS = 365;
 const DEFAULT_DAYS = 90;
