@@ -1,0 +1,137 @@
+/* Absolutely Norway — home / directory page */
+
+.hero {
+  margin-bottom: 22px;
+}
+
+.hero p {
+  color: var(--muted);
+  margin-top: 6px;
+  max-width: 60ch;
+}
+
+.search-wrap {
+  position: relative;
+  margin-bottom: 26px;
+}
+
+.search-wrap .icon {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--muted);
+}
+
+#site-search {
+  width: 100%;
+  padding: 14px 16px 14px 46px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--glass-border);
+  background: var(--glass-bg);
+  backdrop-filter: blur(16px) saturate(140%);
+  -webkit-backdrop-filter: blur(16px) saturate(140%);
+  color: var(--ink);
+  font-size: 1rem;
+}
+
+#site-search::placeholder {
+  color: var(--muted);
+}
+
+.directory-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 16px;
+}
+
+.directory-card {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.directory-card:not(.is-disabled):hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 34px var(--glass-shadow);
+}
+
+.card-top {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.card-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: var(--radius-sm);
+  background: var(--glass-bg-strong);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--brand-strong);
+}
+
+.card-icon .icon {
+  width: 22px;
+  height: 22px;
+}
+
+.card-title {
+  font-size: 1.05rem;
+}
+
+.card-desc {
+  color: var(--muted);
+  font-size: 0.88rem;
+  flex-grow: 1;
+}
+
+.badge {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 0.72rem;
+}
+
+.badge-live {
+  background: rgba(31, 138, 59, 0.15);
+  color: var(--ok);
+}
+
+.badge-soon {
+  background: rgba(81, 99, 90, 0.14);
+  color: var(--muted);
+}
+
+.directory-card.is-disabled {
+  cursor: default;
+  opacity: 0.85;
+}
+
+.directory-card a.card-link {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+}
+
+.directory-card {
+  position: relative;
+}
+
+.no-results {
+  display: none;
+  text-align: center;
+  color: var(--muted);
+  padding: 40px 20px;
+}
+
+.no-results.is-visible {
+  display: block;
+}

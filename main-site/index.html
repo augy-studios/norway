@@ -2,16 +2,24 @@
 <html lang="en">
 
 <head>
+    <!-- Apply saved theme before first paint to avoid a flash of the wrong colour -->
+    <script>
+        (function () {
+            try {
+                var t = localStorage.getItem('norway-theme') || 'classic';
+                document.documentElement.setAttribute('data-theme', t);
+            } catch (e) {
+                document.documentElement.setAttribute('data-theme', 'classic');
+            }
+        })();
+    </script>
+
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-FMCYFTFPEL"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
-
-        function gtag() {
-            dataLayer.push(arguments);
-        }
+        function gtag() { dataLayer.push(arguments); }
         gtag('js', new Date());
-
         gtag('config', 'G-FMCYFTFPEL');
     </script>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9715826188316382"
@@ -29,33 +37,66 @@
     <meta property="og:site_name" content="UwU Apps" />
     <meta property="og:description" content="There's Absolutely Norway you can get all of this in a single PWA!" />
 
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Jua">
-    <link rel="stylesheet" href="/style.css">
-    <meta name="theme-color" content="#ccffcc" />
+    <link rel="stylesheet" href="/assets/css/theme.css">
+    <link rel="stylesheet" href="/assets/css/home.css">
+    <meta name="theme-color" content="#ccffcc" data-theme-meta />
 
-    <!-- Embed Image -->
     <link rel="apple-touch-icon" href="/TAN-main.png">
     <link rel="icon" href="/favicon.ico">
     <link rel="shortcut icon" href="/favicon.ico">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:image:src" content="/TAN-main.png">
     <meta property="og:image" content="/TAN-main.png" />
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    <script defer="" src="https://use.fontawesome.com/releases/v6.5.2/js/all.js"></script>
 </head>
 
 <body>
-    There's Absolutely Norway
+    <div class="page">
+        <header class="topbar">
+            <div class="brand-lockup">
+                <img src="/TAN-192.png" alt="" width="40" height="40">
+                <span class="site-title">There's Absolutely Norway<small>UwU Apps</small></span>
+            </div>
+            <div class="topbar-actions">
+                <button type="button" id="theme-toggle" class="btn btn-icon" aria-haspopup="dialog"
+                    aria-label="Choose theme"></button>
+                <a class="btn btn-coffee" href="https://donate.stripe.com/28o2akeAr3hv0DK6oo" target="_blank"
+                    rel="noopener noreferrer" aria-label="Buy Augy a Coffee">
+                    <span class="btn-label">Buy Augy a Coffee</span>
+                </a>
+            </div>
+        </header>
 
-    <script src="/script.js"></script>
+        <section class="hero">
+            <h1>Directory</h1>
+            <p>Every little Norway-flavoured tool lives here. Search below, or just have a look around.</p>
+        </section>
 
-    <script>
-        if ('serviceWorker' in navigator) {
-          navigator.serviceWorker.register('/sw.js');
-        }
-    </script>
-    
+        <div class="search-wrap">
+            <label for="site-search" class="visually-hidden">Search pages</label>
+            <input type="search" id="site-search" placeholder="Search pages…" autocomplete="off">
+        </div>
+
+        <div class="directory-grid" id="directory-grid" aria-live="polite"></div>
+        <p class="no-results" id="no-results">No pages match your search.</p>
+
+        <footer class="site-footer">
+            <p>Made with love (and a lot of Jua font) by UwU Apps.</p>
+        </footer>
+    </div>
+
+    <div class="modal-overlay" id="theme-modal" hidden role="dialog" aria-modal="true" aria-labelledby="theme-modal-title">
+        <div class="modal glass">
+            <div class="modal-header">
+                <h2 id="theme-modal-title">Choose a theme</h2>
+                <button type="button" class="modal-close" aria-label="Close"></button>
+            </div>
+            <div class="theme-grid"></div>
+        </div>
+    </div>
+
+    <script src="/assets/js/icons.js"></script>
+    <script src="/assets/js/theme.js"></script>
+    <script src="/assets/js/home.js"></script>
 </body>
 
 </html>

@@ -40,5 +40,37 @@
         "entertainment",
         "lifestyle",
         "utilities"
+    ],
+    "shortcuts": [
+        {
+            "name": "Statistics Norway",
+            "short_name": "Stats",
+            "url": "/stats",
+            "icons": [{ "src": "TAN-192.png", "sizes": "192x192", "type": "image/png" }]
+        },
+        {
+            "name": "Entity Lookup",
+            "short_name": "Entities",
+            "url": "/entities",
+            "icons": [{ "src": "TAN-192.png", "sizes": "192x192", "type": "image/png" }]
+        },
+        {
+            "name": "Weather",
+            "short_name": "Weather",
+            "url": "/weather",
+            "icons": [{ "src": "TAN-192.png", "sizes": "192x192", "type": "image/png" }]
+        },
+        {
+            "name": "Currency & Rates",
+            "short_name": "Bank",
+            "url": "/bank",
+            "icons": [{ "src": "TAN-192.png", "sizes": "192x192", "type": "image/png" }]
+        },
+        {
+            "name": "Library Search",
+            "short_name": "Library",
+            "url": "/library",
+            "icons": [{ "src": "TAN-192.png", "sizes": "192x192", "type": "image/png" }]
+        }
     ]
 }

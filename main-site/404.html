@@ -40,6 +40,10 @@
 
 <body>
     <h1 class="title-text">Page Not Found uwu</h1>
+    <a class="home-link" href="/">
+        <svg viewBox="0 0 24 24" fill="none" width="18" height="18" aria-hidden="true"><path d="M4 11.5 12 4l8 7.5M6 10v9.5a1 1 0 0 0 1 1h3.5v-6h3v6H17a1 1 0 0 0 1-1V10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Back to the directory
+    </a>
     <div class="submarine">
         <div class="top">
             <div class="pipe">
@@ -67,7 +71,7 @@
     </div>
     <script>
         if (typeof navigator.serviceWorker !== 'undefined') {
-            navigator.serviceWorker.register('sw.js')
+            navigator.serviceWorker.register('/sw.js')
         }
     </script>
 </body>

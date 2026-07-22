@@ -1,0 +1,290 @@
+/* Absolutely Norway — /weather page */
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--muted);
+  margin-bottom: 14px;
+  font-size: 0.9rem;
+}
+
+.back-link:hover {
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.page-header {
+  margin-bottom: 18px;
+}
+
+.page-header p {
+  color: var(--muted);
+  margin-top: 4px;
+}
+
+.location-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.location-pill {
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--glass-border);
+  background: var(--glass-bg);
+  font-size: 0.85rem;
+  color: var(--ink);
+}
+
+.location-pill[aria-pressed="true"] {
+  background: var(--brand-strong);
+  color: var(--brand-strong-ink);
+  border-color: transparent;
+}
+
+.location-pill.locate-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.now-card {
+  padding: 24px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-bottom: 18px;
+}
+
+.now-icon {
+  width: 64px;
+  height: 64px;
+  color: var(--brand-strong);
+  flex-shrink: 0;
+}
+
+.now-icon .icon {
+  width: 100%;
+  height: 100%;
+}
+
+.now-main {
+  flex: 1;
+  min-width: 160px;
+}
+
+.now-temp {
+  font-size: 2.4rem;
+  line-height: 1;
+}
+
+.now-place {
+  color: var(--muted);
+  font-size: 0.9rem;
+  margin-top: 4px;
+}
+
+.now-details {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+  gap: 12px;
+  flex-basis: 100%;
+}
+
+@media (min-width: 640px) {
+  .now-details {
+    flex-basis: auto;
+    width: auto;
+    margin-left: auto;
+  }
+}
+
+.now-detail {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.now-detail .icon {
+  width: 18px;
+  height: 18px;
+  color: var(--brand-strong);
+}
+
+.section-card {
+  padding: 22px;
+  margin-bottom: 18px;
+}
+
+.section-card h2 {
+  font-size: 1rem;
+  margin-bottom: 12px;
+}
+
+.hourly-scroller {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  padding-bottom: 6px;
+}
+
+.hourly-item {
+  flex: 0 0 auto;
+  width: 76px;
+  padding: 12px 8px;
+  text-align: center;
+  border-radius: var(--radius-sm);
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+}
+
+.hourly-item .hour-label {
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+
+.hourly-item .icon {
+  width: 26px;
+  height: 26px;
+  margin: 6px auto;
+  color: var(--brand-strong);
+}
+
+.hourly-item .hour-temp {
+  font-size: 0.95rem;
+}
+
+.daily-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.daily-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 10px 6px;
+  border-bottom: 1px solid var(--glass-border);
+}
+
+.daily-row:last-child {
+  border-bottom: none;
+}
+
+.daily-row .day-label {
+  width: 90px;
+  flex-shrink: 0;
+  font-size: 0.88rem;
+}
+
+.daily-row .icon {
+  width: 24px;
+  height: 24px;
+  color: var(--brand-strong);
+}
+
+.daily-row .day-range {
+  margin-left: auto;
+  font-size: 0.88rem;
+  color: var(--muted);
+}
+
+.uv-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 10px;
+}
+
+.uv-tile {
+  padding: 12px;
+  border-radius: var(--radius-sm);
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  text-align: center;
+}
+
+.uv-tile .uv-day {
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+
+.uv-tile .uv-index {
+  font-size: 1.5rem;
+  margin: 4px 0;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 8px;
+  border-radius: 999px;
+  font-size: 0.72rem;
+}
+
+.badge-ok {
+  background: rgba(31, 138, 59, 0.15);
+  color: var(--ok);
+}
+
+.badge-warn {
+  background: rgba(184, 118, 12, 0.15);
+  color: var(--warn);
+}
+
+.badge-danger {
+  background: rgba(199, 59, 59, 0.15);
+  color: var(--danger);
+}
+
+.source-note {
+  font-size: 0.8rem;
+  color: var(--muted);
+  margin-top: 8px;
+}
+
+.source-note a {
+  color: var(--muted);
+  text-decoration: underline;
+}
+
+/* -- States ------------------------------------------------------------- */
+
+.state-panel {
+  padding: 40px 20px;
+  text-align: center;
+  color: var(--muted);
+}
+
+.state-panel[hidden] {
+  display: none;
+}
+
+.state-panel .icon {
+  width: 32px;
+  height: 32px;
+  margin: 0 auto 10px;
+  color: var(--muted);
+}
+
+.state-panel.is-error .icon {
+  color: var(--danger);
+}
+
+.skeleton {
+  background: rgba(255, 255, 255, 0.45);
+  animation: skeleton-pulse 1.4s ease-in-out infinite;
+  border-radius: var(--radius-sm);
+}
+
+@keyframes skeleton-pulse {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}

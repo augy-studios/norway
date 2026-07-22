@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <script>
+        (function () {
+            try {
+                var t = localStorage.getItem('norway-theme') || 'classic';
+                document.documentElement.setAttribute('data-theme', t);
+            } catch (e) {
+                document.documentElement.setAttribute('data-theme', 'classic');
+            }
+        })();
+    </script>
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FMCYFTFPEL"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-FMCYFTFPEL');
+    </script>
+
+    <link rel="manifest" href="/manifest.json" />
+
+    <meta charset="utf-8">
+    <title>Currency &amp; Rates — Norges Bank | Absolutely Norway</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Official NOK exchange rates and the key policy rate, live from Norges Bank's open data API.">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Currency &amp; Rates — Norges Bank" />
+    <meta property="og:site_name" content="Absolutely Norway | UwU Apps" />
+    <meta property="og:description" content="Official NOK exchange rates and the key policy rate, live from Norges Bank's open data API." />
+
+    <link rel="stylesheet" href="/assets/css/theme.css">
+    <link rel="stylesheet" href="/bank/bank.css">
+    <meta name="theme-color" content="#ccffcc" data-theme-meta />
+
+    <link rel="apple-touch-icon" href="/TAN-main.png">
+    <link rel="icon" href="/favicon.ico">
+    <link rel="shortcut icon" href="/favicon.ico">
+</head>
+
+<body>
+    <div class="page">
+        <header class="topbar">
+            <div class="brand-lockup">
+                <img src="/TAN-192.png" alt="" width="40" height="40">
+                <span class="site-title">There's Absolutely Norway<small>UwU Apps</small></span>
+            </div>
+            <div class="topbar-actions">
+                <button type="button" id="theme-toggle" class="btn btn-icon" aria-haspopup="dialog"
+                    aria-label="Choose theme"></button>
+                <a class="btn btn-coffee" href="https://donate.stripe.com/28o2akeAr3hv0DK6oo" target="_blank"
+                    rel="noopener noreferrer" aria-label="Buy Augy a Coffee">
+                    <span class="btn-label">Buy Augy a Coffee</span>
+                </a>
+            </div>
+        </header>
+
+        <a class="back-link" href="/"><span id="back-icon"></span> Back to directory</a>
+
+        <div class="page-header">
+            <h1>Currency &amp; Rates</h1>
+            <p>Official mid-market exchange rates and the key policy rate, live from Norges Bank.</p>
+        </div>
+
+        <div id="loading-state" class="state-panel glass">
+            <div class="skeleton" style="height:120px;"></div>
+        </div>
+
+        <div id="error-state" class="state-panel glass is-error" hidden>
+            <div id="error-icon"></div>
+            <p id="error-message">Something went wrong.</p>
+            <button type="button" class="btn btn-primary" id="error-retry" style="margin-top:12px;">Try again</button>
+        </div>
+
+        <main id="content" hidden>
+            <div class="stat-tiles">
+                <div class="stat-tile glass">
+                    <div class="stat-label">Key policy rate</div>
+                    <div class="stat-value"><span id="policy-rate">—</span>%</div>
+                    <div class="stat-sub" id="policy-rate-date"></div>
+                </div>
+                <div class="stat-tile glass">
+                    <div class="stat-label">1 USD</div>
+                    <div class="stat-value"><span id="usd-rate">—</span> NOK</div>
+                    <div class="stat-sub" id="rates-updated"></div>
+                </div>
+            </div>
+
+            <div class="converter-card glass">
+                <h2>Currency converter</h2>
+                <div class="converter-row">
+                    <div class="converter-field">
+                        <label for="amount-input">Amount</label>
+                        <input type="number" id="amount-input" value="100" min="0" step="any">
+                    </div>
+                    <div class="converter-field">
+                        <label for="from-select">From</label>
+                        <select id="from-select"></select>
+                    </div>
+                    <button type="button" class="converter-swap" id="swap-btn" aria-label="Swap currencies"></button>
+                    <div class="converter-field">
+                        <label for="to-select">To</label>
+                        <select id="to-select"></select>
+                    </div>
+                </div>
+                <p class="converter-result" id="converter-result">—</p>
+            </div>
+
+            <div class="rates-card glass">
+                <h2>Today's rates (per 1 unit, in NOK)</h2>
+                <div class="rates-list" id="rates-list"></div>
+            </div>
+
+            <div class="chart-card glass">
+                <h2 id="chart-title">USD / NOK history</h2>
+                <p class="chart-sub">Click a currency above to see its recent history.</p>
+                <div class="chart-wrap">
+                    <svg id="rate-chart" viewBox="0 0 640 220" preserveAspectRatio="none" role="img"
+                        aria-label="Line chart of a currency's exchange rate against NOK over time"></svg>
+                    <div class="chart-tooltip" id="chart-tooltip"></div>
+                </div>
+            </div>
+
+            <p class="source-note">Source: <a href="https://www.norges-bank.no/en/topics/Statistics/open-data/" target="_blank" rel="noopener noreferrer">Norges Bank open data</a>. Rates are official mid-market rates, not transaction rates.</p>
+        </main>
+    </div>
+
+    <div class="modal-overlay" id="theme-modal" hidden role="dialog" aria-modal="true" aria-labelledby="theme-modal-title">
+        <div class="modal glass">
+            <div class="modal-header">
+                <h2 id="theme-modal-title">Choose a theme</h2>
+                <button type="button" class="modal-close" aria-label="Close"></button>
+            </div>
+            <div class="theme-grid"></div>
+        </div>
+    </div>
+
+    <script src="/assets/js/icons.js"></script>
+    <script src="/assets/js/theme.js"></script>
+    <script src="/bank/bank.js"></script>
+</body>
+
+</html>

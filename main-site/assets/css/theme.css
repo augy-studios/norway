@@ -1,0 +1,349 @@
+/* ==========================================================================
+   Absolutely Norway — shared theme
+   Glassmorphism on static, solid theme colours. No gradients, no orbs/blobs.
+   ========================================================================== */
+
+@import url("https://fonts.googleapis.com/css2?family=Jua&display=swap");
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  font-family: "Jua", sans-serif;
+}
+
+/* -- Theme palette --------------------------------------------------------
+   Every theme sets: --brand (page background), --brand-strong (buttons,
+   links, focus rings), --brand-strong-ink (text that sits on brand-strong).
+   Ink / muted / glass tones stay constant so contrast is predictable.
+-------------------------------------------------------------------------- */
+
+:root,
+:root[data-theme="classic"] {
+  --brand: #ccffcc;
+  --brand-strong: #2fae4e;
+  --brand-strong-ink: #ffffff;
+  --theme-name: "Classic";
+}
+
+:root[data-theme="not-green-1"] {
+  --brand: #ffcccc;
+  --brand-strong: #d64545;
+  --brand-strong-ink: #ffffff;
+}
+
+:root[data-theme="not-green-2"] {
+  --brand: #ccccff;
+  --brand-strong: #4a4ad6;
+  --brand-strong-ink: #ffffff;
+}
+
+:root[data-theme="not-green-3"] {
+  --brand: #ffffcc;
+  --brand-strong: #b8960c;
+  --brand-strong-ink: #ffffff;
+}
+
+:root[data-theme="not-green-4"] {
+  --brand: #ffccff;
+  --brand-strong: #b83fb8;
+  --brand-strong-ink: #ffffff;
+}
+
+:root[data-theme="not-green-5"] {
+  --brand: #ccffff;
+  --brand-strong: #0e9aa3;
+  --brand-strong-ink: #ffffff;
+}
+
+:root[data-theme="really-light-green"] {
+  --brand: #ffffff;
+  --brand-strong: #3c9a5c;
+  --brand-strong-ink: #ffffff;
+}
+
+:root {
+  --ink: #16241c;
+  --muted: #51635a;
+  --glass-bg: rgba(255, 255, 255, 0.55);
+  --glass-bg-strong: rgba(255, 255, 255, 0.75);
+  --glass-border: rgba(255, 255, 255, 0.65);
+  --glass-shadow: rgba(20, 40, 30, 0.14);
+  --ok: #1f8a3b;
+  --warn: #b8760c;
+  --danger: #c73b3b;
+  --radius: 18px;
+  --radius-sm: 12px;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  background-color: var(--brand);
+  color: var(--ink);
+  min-height: 100vh;
+  transition: background-color 0.25s ease;
+}
+
+img,
+svg {
+  display: block;
+}
+
+a {
+  color: var(--brand-strong);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+::selection {
+  color: #fff;
+  background: var(--brand-strong);
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
+.icon {
+  width: 1.15em;
+  height: 1.15em;
+  flex-shrink: 0;
+}
+
+/* -- Layout ---------------------------------------------------------------- */
+
+.page {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 24px 20px 64px;
+}
+
+/* -- Topbar ------------------------------------------------------------- */
+
+.topbar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 28px;
+}
+
+.brand-lockup {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-right: auto;
+}
+
+.brand-lockup img {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+}
+
+.brand-lockup .site-title {
+  font-size: 1.15rem;
+  line-height: 1.1;
+}
+
+.brand-lockup .site-title small {
+  display: block;
+  font-size: 0.68rem;
+  color: var(--muted);
+  font-weight: normal;
+}
+
+.topbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* -- Glass surfaces --------------------------------------------------------- */
+
+.glass {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius);
+  backdrop-filter: blur(16px) saturate(140%);
+  -webkit-backdrop-filter: blur(16px) saturate(140%);
+  box-shadow: 0 8px 30px var(--glass-shadow);
+}
+
+/* -- Buttons ----------------------------------------------------------------- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--glass-border);
+  background: var(--glass-bg-strong);
+  color: var(--ink);
+  font-size: 0.92rem;
+  white-space: nowrap;
+  backdrop-filter: blur(16px) saturate(140%);
+  -webkit-backdrop-filter: blur(16px) saturate(140%);
+  transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.12s ease;
+}
+
+.btn:hover {
+  box-shadow: 0 6px 18px var(--glass-shadow);
+  transform: translateY(-1px);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+.btn:focus-visible,
+a:focus-visible,
+input:focus-visible,
+[tabindex]:focus-visible {
+  outline: 3px solid var(--brand-strong);
+  outline-offset: 2px;
+}
+
+.btn-icon {
+  padding: 10px;
+  border-radius: 999px;
+}
+
+.btn-primary {
+  background: var(--brand-strong);
+  color: var(--brand-strong-ink);
+  border-color: transparent;
+}
+
+.btn-coffee {
+  background: var(--glass-bg-strong);
+}
+
+/* -- Modal ------------------------------------------------------------------- */
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 20, 15, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  z-index: 100;
+}
+
+.modal-overlay[hidden] {
+  display: none;
+}
+
+.modal {
+  width: 100%;
+  max-width: 420px;
+  padding: 22px;
+  background: var(--glass-bg-strong);
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.modal-header h2 {
+  font-size: 1.05rem;
+}
+
+.modal-close {
+  border: none;
+  background: transparent;
+  padding: 6px;
+  border-radius: 999px;
+  color: var(--muted);
+}
+
+.modal-close:hover {
+  background: rgba(0, 0, 0, 0.06);
+}
+
+.theme-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 10px;
+}
+
+.theme-swatch {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--glass-border);
+  background: rgba(255, 255, 255, 0.5);
+  text-align: left;
+}
+
+.theme-swatch:hover {
+  background: rgba(255, 255, 255, 0.75);
+}
+
+.theme-swatch[aria-pressed="true"] {
+  border-color: var(--brand-strong);
+  box-shadow: 0 0 0 2px var(--brand-strong) inset;
+}
+
+.theme-swatch .swatch-dot {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  flex-shrink: 0;
+}
+
+.theme-swatch .swatch-check {
+  margin-left: auto;
+  width: 16px;
+  height: 16px;
+  color: var(--brand-strong);
+  visibility: hidden;
+}
+
+.theme-swatch[aria-pressed="true"] .swatch-check {
+  visibility: visible;
+}
+
+/* -- Footer ------------------------------------------------------------------ */
+
+.site-footer {
+  margin-top: 40px;
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+
+/* -- Utility ------------------------------------------------------------------ */
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+@media (max-width: 520px) {
+  .topbar-actions .btn-label {
+    display: none;
+  }
+}

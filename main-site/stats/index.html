@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <script>
+        (function () {
+            try {
+                var t = localStorage.getItem('norway-theme') || 'classic';
+                document.documentElement.setAttribute('data-theme', t);
+            } catch (e) {
+                document.documentElement.setAttribute('data-theme', 'classic');
+            }
+        })();
+    </script>
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FMCYFTFPEL"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-FMCYFTFPEL');
+    </script>
+
+    <link rel="manifest" href="/manifest.json" />
+
+    <meta charset="utf-8">
+    <title>Statistics Norway — Consumer Price Index | Absolutely Norway</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Live Consumer Price Index and inflation figures for Norway, from Statistics Norway's StatBank API.">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Statistics Norway — Consumer Price Index" />
+    <meta property="og:site_name" content="Absolutely Norway | UwU Apps" />
+    <meta property="og:description" content="Live Consumer Price Index and inflation figures for Norway, from Statistics Norway's StatBank API." />
+
+    <link rel="stylesheet" href="/assets/css/theme.css">
+    <link rel="stylesheet" href="/stats/stats.css">
+    <meta name="theme-color" content="#ccffcc" data-theme-meta />
+
+    <link rel="apple-touch-icon" href="/TAN-main.png">
+    <link rel="icon" href="/favicon.ico">
+    <link rel="shortcut icon" href="/favicon.ico">
+</head>
+
+<body>
+    <div class="page">
+        <header class="topbar">
+            <div class="brand-lockup">
+                <img src="/TAN-192.png" alt="" width="40" height="40">
+                <span class="site-title">There's Absolutely Norway<small>UwU Apps</small></span>
+            </div>
+            <div class="topbar-actions">
+                <button type="button" id="theme-toggle" class="btn btn-icon" aria-haspopup="dialog"
+                    aria-label="Choose theme"></button>
+                <a class="btn btn-coffee" href="https://donate.stripe.com/28o2akeAr3hv0DK6oo" target="_blank"
+                    rel="noopener noreferrer" aria-label="Buy Augy a Coffee">
+                    <span class="btn-label">Buy Augy a Coffee</span>
+                </a>
+            </div>
+        </header>
+
+        <a class="back-link" href="/"><span id="back-icon"></span> Back to directory</a>
+
+        <div class="page-header">
+            <h1>Consumer Price Index</h1>
+            <p>Norway's headline inflation figures, pulled live from Statistics Norway's StatBank API.</p>
+        </div>
+
+        <div class="controls-row">
+            <div class="range-group" role="group" aria-label="Time range">
+                <button type="button" class="range-btn" data-months="12" aria-pressed="false">12mo</button>
+                <button type="button" class="range-btn" data-months="24" aria-pressed="true">24mo</button>
+                <button type="button" class="range-btn" data-months="36" aria-pressed="false">36mo</button>
+                <button type="button" class="range-btn" data-months="60" aria-pressed="false">60mo</button>
+            </div>
+            <button type="button" class="btn" id="retry-btn" hidden></button>
+        </div>
+
+        <div id="loading-state" class="state-panel glass">
+            <div class="skeleton" style="height:120px;"></div>
+        </div>
+
+        <div id="error-state" class="state-panel glass is-error" hidden>
+            <div id="error-icon"></div>
+            <p id="error-message">Something went wrong.</p>
+            <button type="button" class="btn btn-primary" id="error-retry" style="margin-top:12px;">Try again</button>
+        </div>
+
+        <div id="empty-state" class="state-panel glass" hidden>
+            <p>No data is available for this range yet.</p>
+        </div>
+
+        <main id="content" hidden>
+            <div class="stat-tiles">
+                <div class="stat-tile glass">
+                    <div class="stat-label">Latest index (2025=100)</div>
+                    <div class="stat-value"><span id="stat-index">—</span></div>
+                    <div class="stat-trend" id="index-period"></div>
+                </div>
+                <div class="stat-tile glass">
+                    <div class="stat-label">12-month rate</div>
+                    <div class="stat-value"><span id="stat-yoy">—</span><span class="unit">%</span></div>
+                    <div class="stat-trend" id="yoy-trend"></div>
+                </div>
+            </div>
+
+            <div class="chart-card glass">
+                <h2>12-month rate over time</h2>
+                <p class="chart-sub">Percentage change vs. the same month one year earlier.</p>
+                <div class="chart-wrap">
+                    <svg id="cpi-chart" viewBox="0 0 640 220" preserveAspectRatio="none" role="img"
+                        aria-label="Line chart of Norway's 12-month Consumer Price Index rate over time"></svg>
+                    <div class="chart-tooltip" id="chart-tooltip"></div>
+                </div>
+                <button type="button" class="btn table-toggle" id="table-toggle" aria-expanded="false">Show table</button>
+                <div class="data-table-wrap" id="table-wrap" hidden>
+                    <table class="data-table">
+                        <thead>
+                            <tr><th>Month</th><th>Index</th><th>12-month rate (%)</th></tr>
+                        </thead>
+                        <tbody id="table-body"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <p class="source-note">Source: <a href="https://www.ssb.no/en/api" target="_blank" rel="noopener noreferrer">Statistics Norway (SSB) StatBank API</a>, table 14700. <span id="updated-note"></span></p>
+        </main>
+    </div>
+
+    <div class="modal-overlay" id="theme-modal" hidden role="dialog" aria-modal="true" aria-labelledby="theme-modal-title">
+        <div class="modal glass">
+            <div class="modal-header">
+                <h2 id="theme-modal-title">Choose a theme</h2>
+                <button type="button" class="modal-close" aria-label="Close"></button>
+            </div>
+            <div class="theme-grid"></div>
+        </div>
+    </div>
+
+    <script src="/assets/js/icons.js"></script>
+    <script src="/assets/js/theme.js"></script>
+    <script src="/stats/stats.js"></script>
+</body>
+
+</html>
