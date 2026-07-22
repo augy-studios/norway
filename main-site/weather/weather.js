@@ -213,7 +213,7 @@
     els.hourlyScroller.innerHTML = body.hourly
       .map((h) => {
         const t = new Date(h.time);
-        const hourLabel = t.getHours().toString().padStart(2, "0") + ":00";
+        const hourLabel = t.toLocaleTimeString("en-GB", { hour: "2-digit", minute: "2-digit", hour12: false, timeZone: "Europe/Oslo" });
         return (
           '<div class="hourly-item">' +
           '<div class="hour-label">' + hourLabel + "</div>" +
@@ -227,8 +227,10 @@
 
     els.dailyList.innerHTML = body.daily
       .map((d) => {
-        const date = new Date(d.date + "T00:00:00");
-        const label2 = date.toLocaleDateString(undefined, { weekday: "short", month: "short", day: "numeric" });
+        // d.date is already the Oslo calendar date (computed server-side); anchor it at
+        // UTC noon and render in UTC so the viewer's own timezone can't shift the day.
+        const date = new Date(d.date + "T12:00:00Z");
+        const label2 = date.toLocaleDateString("en-GB", { weekday: "short", month: "short", day: "numeric", timeZone: "UTC" });
         return (
           '<div class="daily-row">' +
           '<div class="day-label">' + label2 + "</div>" +
@@ -240,7 +242,9 @@
       })
       .join("");
 
-    els.updatedNote.textContent = body.updated ? "Forecast issued " + new Date(body.updated).toLocaleString() + "." : "";
+    els.updatedNote.textContent = body.updated
+      ? "Forecast issued " + new Date(body.updated).toLocaleString("en-GB", { timeZone: "Europe/Oslo" }) + " CET."
+      : "";
 
     renderUv(body.uv);
   }

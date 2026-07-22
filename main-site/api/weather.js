@@ -43,8 +43,19 @@ function parseCoord(raw, min, max) {
   return Math.round(n * 10000) / 10000;
 }
 
+const OSLO_TZ = "Europe/Oslo";
+const osloDateFormatter = new Intl.DateTimeFormat("en-CA", { timeZone: OSLO_TZ, year: "numeric", month: "2-digit", day: "2-digit" });
+const osloHourFormatter = new Intl.DateTimeFormat("en-GB", { timeZone: OSLO_TZ, hour: "2-digit", hour12: false });
+
+// Norway runs on one timezone (CET/CEST), so days and "midday" are grouped by
+// Oslo local time rather than the UTC date in the raw timestamp - otherwise a
+// 23:00 UTC entry (already tomorrow in Oslo) would land in the wrong day.
 function dateKey(isoTime) {
-  return isoTime.slice(0, 10);
+  return osloDateFormatter.format(new Date(isoTime));
+}
+
+function osloHour(isoTime) {
+  return parseInt(osloHourFormatter.format(new Date(isoTime)), 10);
 }
 
 function normalize(payload) {
@@ -92,7 +103,7 @@ function normalize(payload) {
     .slice(0, 7)
     .map(([date, entries]) => {
       const temps = entries.map((e) => e.temperature).filter((t) => t != null);
-      const midday = entries.find((e) => e.time.slice(11, 13) === "12") || entries[Math.floor(entries.length / 2)];
+      const midday = entries.find((e) => osloHour(e.time) === 12) || entries[Math.floor(entries.length / 2)];
       return {
         date,
         min: temps.length ? Math.min(...temps) : null,

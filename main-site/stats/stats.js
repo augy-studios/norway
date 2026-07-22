@@ -94,7 +94,9 @@
       els.yoyTrend.innerHTML = (icons.trendUp || "") + "<span>vs " + prev.label + "</span>";
     }
 
-    els.updatedNote.textContent = body.updated ? "Table last updated " + new Date(body.updated).toLocaleDateString() + "." : "";
+    els.updatedNote.textContent = body.updated
+      ? "Table last updated " + new Date(body.updated).toLocaleDateString("en-GB", { timeZone: "Europe/Oslo" }) + " (CET)."
+      : "";
 
     drawChart(body.series);
     renderTable(body.series);

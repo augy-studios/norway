@@ -1,5 +1,5 @@
-const CACHE = "norway-v13";
-const API_CACHE = "norway-api-v13";
+const CACHE = "norway-v14";
+const API_CACHE = "norway-api-v14";
 
 const ASSETS = [
   "/",
