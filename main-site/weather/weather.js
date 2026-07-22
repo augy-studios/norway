@@ -28,6 +28,7 @@
     content: document.getElementById("content"),
     nowIcon: document.getElementById("now-icon"),
     nowTemp: document.getElementById("now-temp"),
+    nowCondition: document.getElementById("now-condition"),
     nowPlace: document.getElementById("now-place"),
     windIcon: document.getElementById("wind-icon"),
     nowWind: document.getElementById("now-wind"),
@@ -55,6 +56,43 @@
     if (s.includes("partlycloudy") || s.includes("fair")) return "cloudSun";
     if (s.includes("clearsky")) return "sun";
     return "cloudSun";
+  }
+
+  function symbolToLabel(symbol) {
+    if (!symbol) return "Weather unknown";
+    const s = symbol.toLowerCase();
+
+    let intensity = "";
+    if (s.includes("light")) intensity = "Light ";
+    else if (s.includes("heavy")) intensity = "Heavy ";
+
+    const hasThunder = s.includes("thunder");
+    const isShowers = s.includes("showers");
+
+    let text;
+    if (s.includes("sleet")) {
+      text = intensity + "sleet" + (isShowers ? " showers" : "");
+    } else if (s.includes("snow")) {
+      text = intensity + "snow" + (isShowers ? " showers" : "");
+    } else if (s.includes("rain")) {
+      text = intensity + "rain" + (isShowers ? " showers" : "");
+    } else if (s.includes("fog")) {
+      text = "fog";
+    } else if (s.includes("cloudy") && !s.includes("partly")) {
+      text = "cloudy";
+    } else if (s.includes("partlycloudy")) {
+      text = "partly cloudy";
+    } else if (s.includes("fair")) {
+      text = "fair";
+    } else if (s.includes("clearsky")) {
+      text = "clear sky";
+    } else {
+      text = "cloudy";
+    }
+
+    if (hasThunder) text += " and thunder";
+
+    return text.charAt(0).toUpperCase() + text.slice(1);
   }
 
   function iconSvg(key) {
@@ -165,6 +203,7 @@
 
     els.nowIcon.innerHTML = iconSvg(symbolToIconKey(now.symbol));
     els.nowTemp.textContent = now.temperature != null ? Math.round(now.temperature) : "-";
+    els.nowCondition.textContent = symbolToLabel(now.symbol);
     els.nowPlace.textContent = label;
     els.nowWind.textContent = now.windSpeed != null ? now.windSpeed.toFixed(1) + " m/s" : "-";
     els.nowHumidity.textContent = now.humidity != null ? Math.round(now.humidity) + "%" : "-";
@@ -180,6 +219,7 @@
           '<div class="hour-label">' + hourLabel + "</div>" +
           iconSvg(symbolToIconKey(h.symbol)) +
           '<div class="hour-temp">' + (h.temperature != null ? Math.round(h.temperature) + "°" : "-") + "</div>" +
+          '<div class="hour-condition">' + symbolToLabel(h.symbol) + "</div>" +
           "</div>"
         );
       })
@@ -193,6 +233,7 @@
           '<div class="daily-row">' +
           '<div class="day-label">' + label2 + "</div>" +
           iconSvg(symbolToIconKey(d.symbol)) +
+          '<div class="day-condition">' + symbolToLabel(d.symbol) + "</div>" +
           '<div class="day-range">' + (d.max != null ? Math.round(d.max) + "°" : "-") + " / " + (d.min != null ? Math.round(d.min) + "°" : "-") + "</div>" +
           "</div>"
         );

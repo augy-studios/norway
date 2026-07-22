@@ -82,6 +82,11 @@
   line-height: 1;
 }
 
+.now-condition {
+  font-size: 1rem;
+  margin-top: 2px;
+}
+
 .now-place {
   color: var(--muted);
   font-size: 0.9rem;
@@ -136,7 +141,7 @@
 
 .hourly-item {
   flex: 0 0 auto;
-  width: 76px;
+  width: 96px;
   padding: 12px 8px;
   text-align: center;
   border-radius: var(--radius-sm);
@@ -158,6 +163,13 @@
 
 .hourly-item .hour-temp {
   font-size: 0.95rem;
+}
+
+.hourly-item .hour-condition {
+  font-size: 0.72rem;
+  color: var(--muted);
+  line-height: 1.2;
+  margin-top: 3px;
 }
 
 .daily-list {
@@ -188,10 +200,22 @@
   width: 24px;
   height: 24px;
   color: var(--brand-strong);
+  flex-shrink: 0;
+}
+
+.daily-row .day-condition {
+  flex: 1;
+  min-width: 0;
+  font-size: 0.85rem;
+  color: var(--muted);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .daily-row .day-range {
   margin-left: auto;
+  flex-shrink: 0;
   font-size: 0.88rem;
   color: var(--muted);
 }
