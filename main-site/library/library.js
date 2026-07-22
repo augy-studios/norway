@@ -121,6 +121,14 @@
     debounceTimer = setTimeout(() => runSearch(value, 0), DEBOUNCE_MS);
   });
 
+  els.input.addEventListener("keydown", (e) => {
+    if (e.key !== "Enter") return;
+    clearTimeout(debounceTimer);
+    const value = els.input.value.trim();
+    if (value.length < 2) return;
+    runSearch(value, 0);
+  });
+
   els.errorRetry.addEventListener("click", () => runSearch(currentQuery, currentPage));
   els.prevPage.addEventListener("click", () => runSearch(currentQuery, Math.max(0, currentPage - 1)));
   els.nextPage.addEventListener("click", () => runSearch(currentQuery, currentPage + 1));

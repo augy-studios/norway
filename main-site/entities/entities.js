@@ -176,15 +176,24 @@
     debounceTimer = setTimeout(() => runSearch(value, 0), ORGNR_RE.test(value) ? 0 : DEBOUNCE_MS);
   });
 
+  els.input.addEventListener("keydown", (e) => {
+    if (e.key !== "Enter") return;
+    clearTimeout(debounceTimer);
+    const value = els.input.value.trim();
+    if (!value || (!ORGNR_RE.test(value) && value.length < 2)) return;
+    runSearch(value, 0);
+  });
+
   els.errorRetry.addEventListener("click", () => runSearch(currentQuery, currentPage));
   els.prevPage.addEventListener("click", () => runSearch(currentQuery, Math.max(0, currentPage - 1)));
   els.nextPage.addEventListener("click", () => runSearch(currentQuery, currentPage + 1));
   els.backToResults.addEventListener("click", () => {
-    if (ORGNR_RE.test(currentQuery)) {
+    const value = els.input.value.trim();
+    if (!value) {
       showPanel("idle");
-    } else {
-      runSearch(currentQuery, currentPage);
+      return;
     }
+    runSearch(value, 0);
   });
 
   document.addEventListener("DOMContentLoaded", injectIcons);

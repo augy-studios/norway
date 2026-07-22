@@ -78,6 +78,9 @@
 
   render();
   searchInput.addEventListener("input", (e) => filter(e.target.value));
+  searchInput.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") filter(searchInput.value);
+  });
 
   const searchIcon = document.getElementById("search-icon");
   if (searchIcon && window.NorwayIcons) searchIcon.innerHTML = window.NorwayIcons.search;
