@@ -110,3 +110,8 @@
 .no-results.is-visible {
   display: block;
 }
+
+#footer-heart {
+  display: inline-flex;
+  vertical-align: middle;
+}
