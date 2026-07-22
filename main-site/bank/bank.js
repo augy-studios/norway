@@ -1,4 +1,4 @@
-/* Absolutely Norway — /bank page: rates, converter, policy rate, history chart. */
+/* Absolutely Norway's /bank page: rates, converter, policy rate, and history chart. */
 
 (function () {
   "use strict";
@@ -77,14 +77,14 @@
       els.policyRate.textContent = policyRes.rate.toFixed(2);
       els.policyRateDate.textContent = "As of " + policyRes.asOf;
     } else {
-      els.policyRate.textContent = "—";
+      els.policyRate.textContent = "-";
       els.policyRateDate.textContent = "Unavailable right now";
     }
   }
 
   function renderRates(ratesRes) {
     const usd = ratesRes.rates.find((r) => r.currency === "USD");
-    els.usdRate.textContent = usd ? usd.value.toFixed(2) : "—";
+    els.usdRate.textContent = usd ? usd.value.toFixed(2) : "-";
     els.ratesUpdated.textContent = "As of " + ratesRes.updated;
 
     els.ratesList.innerHTML = ratesRes.rates

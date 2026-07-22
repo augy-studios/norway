@@ -1,4 +1,4 @@
-/* Absolutely Norway — home / directory page */
+/* Absolutely Norway's home / directory page */
 
 .hero {
   margin-bottom: 22px;
@@ -53,7 +53,7 @@
   transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
-.directory-card:not(.is-disabled):hover {
+.directory-card:hover {
   transform: translateY(-3px);
   box-shadow: 0 14px 34px var(--glass-shadow);
 }
@@ -88,31 +88,6 @@
   color: var(--muted);
   font-size: 0.88rem;
   flex-grow: 1;
-}
-
-.badge {
-  align-self: flex-start;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 4px 10px;
-  border-radius: 999px;
-  font-size: 0.72rem;
-}
-
-.badge-live {
-  background: rgba(31, 138, 59, 0.15);
-  color: var(--ok);
-}
-
-.badge-soon {
-  background: rgba(81, 99, 90, 0.14);
-  color: var(--muted);
-}
-
-.directory-card.is-disabled {
-  cursor: default;
-  opacity: 0.85;
 }
 
 .directory-card a.card-link {

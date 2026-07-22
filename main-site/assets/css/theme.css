@@ -1,6 +1,6 @@
 /* ==========================================================================
-   Absolutely Norway — shared theme
-   Glassmorphism on static, solid theme colours. No gradients, no orbs/blobs.
+   Absolutely Norway's shared theme: glassmorphism over flat, solid theme
+   colours, without gradients or blobs.
    ========================================================================== */
 
 @import url("https://fonts.googleapis.com/css2?family=Jua&display=swap");
@@ -85,21 +85,19 @@ body {
   background-color: var(--brand);
   color: var(--ink);
   min-height: 100vh;
+  overflow-x: hidden;
   transition: background-color 0.25s ease;
 }
 
 img,
 svg {
   display: block;
+  max-width: 100%;
 }
 
 a {
   color: var(--brand-strong);
   text-decoration: none;
-}
-
-a:hover {
-  text-decoration: underline;
 }
 
 ::selection {
@@ -240,10 +238,16 @@ input:focus-visible,
   justify-content: center;
   padding: 20px;
   z-index: 100;
+  opacity: 0;
+  transition: opacity 0.2s ease;
 }
 
 .modal-overlay[hidden] {
   display: none;
+}
+
+.modal-overlay.is-open {
+  opacity: 1;
 }
 
 .modal {
@@ -251,6 +255,14 @@ input:focus-visible,
   max-width: 420px;
   padding: 22px;
   background: var(--glass-bg-strong);
+  transform: translateY(10px) scale(0.97);
+  opacity: 0;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.modal-overlay.is-open .modal {
+  transform: translateY(0) scale(1);
+  opacity: 1;
 }
 
 .modal-header {
@@ -342,8 +354,66 @@ input:focus-visible,
   white-space: nowrap;
 }
 
+@media (max-width: 600px) {
+  .page {
+    padding: 18px 14px 48px;
+  }
+
+  .topbar {
+    gap: 8px;
+    margin-bottom: 20px;
+  }
+
+  .brand-lockup img {
+    width: 32px;
+    height: 32px;
+  }
+
+  .brand-lockup .site-title {
+    font-size: 1rem;
+  }
+
+  .btn {
+    padding: 9px 12px;
+  }
+
+  .modal {
+    padding: 18px;
+  }
+}
+
 @media (max-width: 520px) {
   .topbar-actions .btn-label {
     display: none;
+  }
+}
+
+/* -- Motion -------------------------------------------------------------- */
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.state-panel,
+#content,
+#results-view,
+#detail-view {
+  animation: fade-in-up 0.25s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }

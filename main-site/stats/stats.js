@@ -1,4 +1,4 @@
-/* Absolutely Norway — /stats page: fetch, render, chart + table for SSB CPI data. */
+/* Absolutely Norway's /stats page: fetch, render, chart, and table for SSB CPI data. */
 
 (function () {
   "use strict";
@@ -80,10 +80,10 @@
     setState("content");
 
     const last = body.series[body.series.length - 1];
-    els.statIndex.textContent = last.index != null ? last.index.toFixed(1) : "—";
+    els.statIndex.textContent = last.index != null ? last.index.toFixed(1) : "-";
     els.indexPeriod.textContent = last.label;
 
-    els.statYoy.textContent = last.yoyPercent != null ? (last.yoyPercent > 0 ? "+" : "") + last.yoyPercent.toFixed(1) : "—";
+    els.statYoy.textContent = last.yoyPercent != null ? (last.yoyPercent > 0 ? "+" : "") + last.yoyPercent.toFixed(1) : "-";
     const prev = body.series[body.series.length - 2];
     const icons = window.NorwayIcons || {};
     els.yoyTrend.innerHTML = "";
@@ -192,8 +192,8 @@
       .reverse()
       .map(
         (d) =>
-          "<tr><td>" + d.label + "</td><td>" + (d.index != null ? d.index.toFixed(1) : "—") + "</td><td>" +
-          (d.yoyPercent != null ? d.yoyPercent.toFixed(1) : "—") + "</td></tr>"
+          "<tr><td>" + d.label + "</td><td>" + (d.index != null ? d.index.toFixed(1) : "-") + "</td><td>" +
+          (d.yoyPercent != null ? d.yoyPercent.toFixed(1) : "-") + "</td></tr>"
       )
       .join("");
   }
@@ -208,10 +208,10 @@
   els.errorRetry.addEventListener("click", () => load(currentMonths));
 
   els.tableToggle.addEventListener("click", () => {
-    const isHidden = els.tableWrap.hidden;
-    els.tableWrap.hidden = !isHidden;
-    els.tableToggle.setAttribute("aria-expanded", String(isHidden));
-    els.tableToggle.textContent = isHidden ? "Hide table" : "Show table";
+    const willOpen = !els.tableWrap.classList.contains("is-open");
+    els.tableWrap.classList.toggle("is-open", willOpen);
+    els.tableToggle.setAttribute("aria-expanded", String(willOpen));
+    els.tableToggle.textContent = willOpen ? "Hide table" : "Show table";
   });
 
   document.addEventListener("DOMContentLoaded", () => {

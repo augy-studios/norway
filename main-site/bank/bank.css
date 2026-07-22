@@ -1,4 +1,4 @@
-/* Absolutely Norway — /bank page */
+/* Absolutely Norway's /bank page */
 
 .back-link {
   display: inline-flex;
@@ -94,6 +94,26 @@
   border-radius: 999px;
   border: 1px solid var(--glass-border);
   background: var(--glass-bg-strong);
+  flex-shrink: 0;
+}
+
+@media (max-width: 520px) {
+  .converter-row {
+    align-items: stretch;
+  }
+
+  .converter-field {
+    flex: 1 1 100%;
+  }
+
+  .converter-field input,
+  .converter-field select {
+    width: 100%;
+  }
+
+  .converter-swap {
+    align-self: center;
+  }
 }
 
 .converter-result {

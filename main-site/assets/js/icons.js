@@ -1,4 +1,4 @@
-/* Absolutely Norway — shared inline SVG icon set (no emoji anywhere on site). */
+/* Absolutely Norway's shared inline SVG icon set, used in place of emoji throughout the site. */
 
 window.NorwayIcons = {
   chart:

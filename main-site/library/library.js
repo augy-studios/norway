@@ -1,4 +1,4 @@
-/* Absolutely Norway — /library page: search National Library catalogue via /api/library. */
+/* Absolutely Norway's /library page: search the National Library catalogue via /api/library. */
 
 (function () {
   "use strict";

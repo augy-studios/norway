@@ -1,4 +1,4 @@
-const CACHE = "norway-v1";
+const CACHE = "norway-v2";
 const API_CACHE = "norway-api-v1";
 
 const ASSETS = [

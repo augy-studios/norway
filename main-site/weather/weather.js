@@ -1,4 +1,4 @@
-/* Absolutely Norway — /weather page: city picker + forecast rendering. */
+/* Absolutely Norway's /weather page: city picker and forecast rendering. */
 
 (function () {
   "use strict";
@@ -164,12 +164,12 @@
     const now = body.now;
 
     els.nowIcon.innerHTML = iconSvg(symbolToIconKey(now.symbol));
-    els.nowTemp.textContent = now.temperature != null ? Math.round(now.temperature) : "—";
+    els.nowTemp.textContent = now.temperature != null ? Math.round(now.temperature) : "-";
     els.nowPlace.textContent = label;
-    els.nowWind.textContent = now.windSpeed != null ? now.windSpeed.toFixed(1) + " m/s" : "—";
-    els.nowHumidity.textContent = now.humidity != null ? Math.round(now.humidity) + "%" : "—";
-    els.nowPressure.textContent = now.pressure != null ? Math.round(now.pressure) + " hPa" : "—";
-    els.nowPrecip.textContent = now.precipitation != null ? now.precipitation.toFixed(1) + " mm/h" : "—";
+    els.nowWind.textContent = now.windSpeed != null ? now.windSpeed.toFixed(1) + " m/s" : "-";
+    els.nowHumidity.textContent = now.humidity != null ? Math.round(now.humidity) + "%" : "-";
+    els.nowPressure.textContent = now.pressure != null ? Math.round(now.pressure) + " hPa" : "-";
+    els.nowPrecip.textContent = now.precipitation != null ? now.precipitation.toFixed(1) + " mm/h" : "-";
 
     els.hourlyScroller.innerHTML = body.hourly
       .map((h) => {
@@ -179,7 +179,7 @@
           '<div class="hourly-item">' +
           '<div class="hour-label">' + hourLabel + "</div>" +
           iconSvg(symbolToIconKey(h.symbol)) +
-          '<div class="hour-temp">' + (h.temperature != null ? Math.round(h.temperature) + "°" : "—") + "</div>" +
+          '<div class="hour-temp">' + (h.temperature != null ? Math.round(h.temperature) + "°" : "-") + "</div>" +
           "</div>"
         );
       })
@@ -193,7 +193,7 @@
           '<div class="daily-row">' +
           '<div class="day-label">' + label2 + "</div>" +
           iconSvg(symbolToIconKey(d.symbol)) +
-          '<div class="day-range">' + (d.max != null ? Math.round(d.max) + "°" : "—") + " / " + (d.min != null ? Math.round(d.min) + "°" : "—") + "</div>" +
+          '<div class="day-range">' + (d.max != null ? Math.round(d.max) + "°" : "-") + " / " + (d.min != null ? Math.round(d.min) + "°" : "-") + "</div>" +
           "</div>"
         );
       })
@@ -236,7 +236,7 @@
           '<div class="uv-tile">' +
           '<div class="uv-day">' + label + "</div>" +
           '<div class="uv-index">' + d.index.toFixed(1) + "</div>" +
-          '<span class="badge ' + uvBadgeClass(d.index) + '">' + (d.classification || "—") + "</span>" +
+          '<span class="badge ' + uvBadgeClass(d.index) + '">' + (d.classification || "-") + "</span>" +
           "</div>"
       )
       .join("");

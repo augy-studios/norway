@@ -1,6 +1,6 @@
-/* Absolutely Norway — shared theme picker + service worker registration.
-   Theme is also applied by a tiny inline script in <head> (before this file
-   loads) so there is no flash of the wrong colour on page load. */
+/* Absolutely Norway's shared theme picker and service worker registration.
+   The theme is also applied by a tiny inline script in <head>, before this
+   file loads, so the page never flashes the wrong colour. */
 
 (function () {
   "use strict";
@@ -77,15 +77,25 @@
 
     function open() {
       overlay.hidden = false;
+      // Force layout so the browser sees the pre-transition state before we
+      // flip the class, otherwise it skips straight to the end state.
+      overlay.getBoundingClientRect();
+      overlay.classList.add("is-open");
       const firstSwatch = overlay.querySelector(".theme-swatch");
       if (firstSwatch) firstSwatch.focus();
       document.addEventListener("keydown", onKeydown);
     }
 
     function close() {
-      overlay.hidden = true;
+      overlay.classList.remove("is-open");
       openBtn.focus();
       document.removeEventListener("keydown", onKeydown);
+      const onTransitionEnd = (e) => {
+        if (e.target !== overlay) return;
+        overlay.hidden = true;
+        overlay.removeEventListener("transitionend", onTransitionEnd);
+      };
+      overlay.addEventListener("transitionend", onTransitionEnd);
     }
 
     function onKeydown(e) {

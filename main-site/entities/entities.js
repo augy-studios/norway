@@ -1,4 +1,4 @@
-/* Absolutely Norway — /entities page: search + lookup against Brreg via /api/entities. */
+/* Absolutely Norway's /entities page: search and lookup against Brreg via /api/entities. */
 
 (function () {
   "use strict";
@@ -146,12 +146,12 @@
 
     const addr = entity.businessAddress || entity.postalAddress;
     const fields = [
-      ["Organisation form", entity.orgForm ? entity.orgForm.description + " (" + entity.orgForm.code + ")" : "—"],
-      ["Industry", entity.industry ? entity.industry.description : "—"],
-      ["Registered", entity.registeredDate || "—"],
-      ["Employees", entity.employees != null ? String(entity.employees) : "—"],
-      ["Address", addr ? [...(addr.lines || []), addr.postalCode, addr.city].filter(Boolean).join(", ") : "—"],
-      ["Website", entity.website ? '<a href="https://' + entity.website.replace(/^https?:\/\//, "") + '" target="_blank" rel="noopener noreferrer">' + entity.website + "</a>" : "—"],
+      ["Organisation form", entity.orgForm ? entity.orgForm.description + " (" + entity.orgForm.code + ")" : "-"],
+      ["Industry", entity.industry ? entity.industry.description : "-"],
+      ["Registered", entity.registeredDate || "-"],
+      ["Employees", entity.employees != null ? String(entity.employees) : "-"],
+      ["Address", addr ? [...(addr.lines || []), addr.postalCode, addr.city].filter(Boolean).join(", ") : "-"],
+      ["Website", entity.website ? '<a href="https://' + entity.website.replace(/^https?:\/\//, "") + '" target="_blank" rel="noopener noreferrer">' + entity.website + "</a>" : "-"],
     ];
     els.detailGrid.innerHTML = fields
       .map(([label, value]) => '<div class="detail-field"><div class="field-label">' + label + '</div><div class="field-value">' + value + "</div></div>")

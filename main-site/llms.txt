@@ -1,0 +1,22 @@
+# There's Absolutely Norway
+
+> A directory of small tools built entirely on free, key-less Norwegian open-data APIs: official statistics, company lookup, weather, exchange rates, and library search. A PWA by UwU Apps.
+
+There is no sign-up, no API key, and no paid tier anywhere on this site. Every
+page fetches live data at request time (through a small serverless proxy for
+caching and rate-limit protection), so figures reflect the current state of
+each upstream source rather than a stored snapshot.
+
+## Pages
+
+- [Directory](https://norway.uwuapps.org/): table of contents for the whole site, with search.
+- [Statistics Norway](https://norway.uwuapps.org/stats): Consumer Price Index, latest index value, 12-month rate, historical chart and table. Source: [SSB StatBank](https://www.ssb.no/en/api).
+- [Entity Lookup](https://norway.uwuapps.org/entities): look up a Norwegian registered company by organisation number or name, including status, address, and industry code. Source: [Brreg Enhetsregisteret](https://data.brreg.no/enhetsregisteret/api/dokumentasjon/en/index.html).
+- [Weather](https://norway.uwuapps.org/weather): current conditions, 24-hour and 7-day forecast, and peak UV index for Norwegian cities. Sources: [MET Norway Locationforecast](https://api.met.no/weatherapi/locationforecast/2.0/documentation), [NILU UV forecast](https://api.nilu.no/).
+- [Currency & Rates](https://norway.uwuapps.org/bank): official NOK exchange rates, a currency converter, and the key policy rate. Source: [Norges Bank open data](https://www.norges-bank.no/en/topics/Statistics/open-data/).
+- [Library Search](https://norway.uwuapps.org/library): search the National Library of Norway's digitized books, newspapers and images. Source: [Nasjonalbiblioteket](https://api.nb.no/).
+
+## Notes
+
+- Figures and search results are sourced live from the official providers linked above; this site itself is not a source of truth for any of them.
+- Source code is open on [GitHub](https://github.com/augy-studios/norway) under the MIT licence.
