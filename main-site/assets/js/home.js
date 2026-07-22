@@ -78,4 +78,7 @@
 
   render();
   searchInput.addEventListener("input", (e) => filter(e.target.value));
+
+  const footerHeart = document.getElementById("footer-heart");
+  if (footerHeart && window.NorwayIcons) footerHeart.innerHTML = window.NorwayIcons.heart;
 })();
