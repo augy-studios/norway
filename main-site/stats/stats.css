@@ -215,9 +215,9 @@
 }
 
 .data-table-wrap.is-open {
-  max-height: 600px;
+  max-height: 420px;
   overflow-x: auto;
-  overflow-y: hidden;
+  overflow-y: auto;
   margin-top: 12px;
 }
 
@@ -225,6 +225,12 @@ table.data-table {
   width: 100%;
   border-collapse: collapse;
   font-size: 0.85rem;
+}
+
+table.data-table thead th {
+  position: sticky;
+  top: 0;
+  background: var(--glass-bg-strong);
 }
 
 table.data-table th,
