@@ -33,15 +33,15 @@
 .location-pill {
   padding: 8px 14px;
   border-radius: 999px;
-  border: 1px solid var(--glass-border);
-  background: var(--glass-bg);
+  border: 1px solid var(--surface-border);
+  background: var(--surface);
   font-size: 0.85rem;
   color: var(--ink);
 }
 
 .location-pill[aria-pressed="true"] {
-  background: var(--brand-strong);
-  color: var(--brand-strong-ink);
+  background: color-mix(in srgb, var(--brand) 55%, var(--surface-strong));
+  color: var(--on-brand);
   border-color: transparent;
 }
 
@@ -145,8 +145,8 @@
   padding: 12px 8px;
   text-align: center;
   border-radius: var(--radius-sm);
-  background: var(--glass-bg);
-  border: 1px solid var(--glass-border);
+  background: var(--surface);
+  border: 1px solid var(--surface-border);
 }
 
 .hourly-item .hour-label {
@@ -183,7 +183,7 @@
   align-items: center;
   gap: 14px;
   padding: 10px 6px;
-  border-bottom: 1px solid var(--glass-border);
+  border-bottom: 1px solid var(--surface-border);
 }
 
 .daily-row:last-child {
@@ -229,8 +229,8 @@
 .uv-tile {
   padding: 12px;
   border-radius: var(--radius-sm);
-  background: var(--glass-bg);
-  border: 1px solid var(--glass-border);
+  background: var(--surface);
+  border: 1px solid var(--surface-border);
   text-align: center;
 }
 
@@ -254,18 +254,18 @@
 }
 
 .badge-ok {
-  background: rgba(31, 138, 59, 0.15);
+  background: color-mix(in srgb, var(--ok) 14%, transparent);
   color: var(--ok);
 }
 
 .badge-warn {
-  background: rgba(184, 118, 12, 0.15);
+  background: color-mix(in srgb, var(--warn) 14%, transparent);
   color: var(--warn);
 }
 
 .badge-danger {
-  background: rgba(199, 59, 59, 0.15);
-  color: var(--danger);
+  background: color-mix(in srgb, var(--error) 14%, transparent);
+  color: var(--error);
 }
 
 .source-note {
@@ -299,6 +299,6 @@
 }
 
 .state-panel.is-error .icon {
-  color: var(--danger);
+  color: var(--error);
 }
 

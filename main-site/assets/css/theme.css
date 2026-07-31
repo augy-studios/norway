@@ -1,79 +1,17 @@
-/* ==========================================================================
-   Absolutely Norway's shared theme: glassmorphism over flat, solid theme
-   colours, without gradients or blobs.
-   ========================================================================== */
+/* Absolutely Norway's shared theme: 7 brand swatches x light/dark, flat
+   tinted background, glassmorphism, no gradients or blobs. */
 
 @import url("https://fonts.googleapis.com/css2?family=Jua&display=swap");
 
+/* ---- base ---- */
+
 * {
-  box-sizing: border-box;
   padding: 0;
   margin: 0;
-  font-family: "Jua", sans-serif;
-}
-
-/* -- Theme palette --------------------------------------------------------
-   Every theme sets: --brand (page background), --brand-strong (buttons,
-   links, focus rings), --brand-strong-ink (text that sits on brand-strong).
-   Ink / muted / glass tones stay constant so contrast is predictable.
--------------------------------------------------------------------------- */
-
-:root,
-:root[data-theme="classic"] {
-  --brand: #ccffcc;
-  --brand-strong: #2fae4e;
-  --brand-strong-ink: #ffffff;
-  --theme-name: "Classic";
-}
-
-:root[data-theme="not-green-1"] {
-  --brand: #ffcccc;
-  --brand-strong: #d64545;
-  --brand-strong-ink: #ffffff;
-}
-
-:root[data-theme="not-green-2"] {
-  --brand: #ccccff;
-  --brand-strong: #4a4ad6;
-  --brand-strong-ink: #ffffff;
-}
-
-:root[data-theme="not-green-3"] {
-  --brand: #ffffcc;
-  --brand-strong: #b8960c;
-  --brand-strong-ink: #ffffff;
-}
-
-:root[data-theme="not-green-4"] {
-  --brand: #ffccff;
-  --brand-strong: #b83fb8;
-  --brand-strong-ink: #ffffff;
-}
-
-:root[data-theme="not-green-5"] {
-  --brand: #ccffff;
-  --brand-strong: #0e9aa3;
-  --brand-strong-ink: #ffffff;
-}
-
-:root[data-theme="really-light-green"] {
-  --brand: #ffffff;
-  --brand-strong: #3c9a5c;
-  --brand-strong-ink: #ffffff;
-}
-
-:root {
-  --ink: #16241c;
-  --muted: #51635a;
-  --glass-bg: rgba(255, 255, 255, 0.55);
-  --glass-bg-strong: rgba(255, 255, 255, 0.75);
-  --glass-border: rgba(255, 255, 255, 0.65);
-  --glass-shadow: rgba(20, 40, 30, 0.14);
-  --ok: #1f8a3b;
-  --warn: #b8760c;
-  --danger: #c73b3b;
-  --radius: 18px;
-  --radius-sm: 12px;
+  box-sizing: border-box;
+  font-family: "Jua", "Segoe UI", sans-serif;
+  -webkit-user-select: none;
+  user-select: none;
 }
 
 html,
@@ -81,12 +19,170 @@ body {
   height: 100%;
 }
 
+input,
+textarea {
+  user-select: text;
+}
+
+:link,
+:visited {
+  color: var(--brand-strong);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+  color: inherit;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+/* ---- brand colour tokens (7 swatches) ----
+   --brand is the pale swatch; --brand-strong is the saturated per-swatch
+   accent used for links, focus rings, chart lines and icons. Both modes
+   carry their own --brand-strong so it clears AA on the surface behind it. */
+
+:root,
+:root[data-color-theme="classic"] {
+  --brand: #ccffcc;
+  --brand-rgb: 204, 255, 204;
+  --brand-strong: #1f6b3d;
+}
+
+:root[data-color-theme="not-green-1"] {
+  --brand: #ffcccc;
+  --brand-rgb: 255, 204, 204;
+  --brand-strong: #a52222;
+}
+
+:root[data-color-theme="not-green-2"] {
+  --brand: #ccccff;
+  --brand-rgb: 204, 204, 255;
+  --brand-strong: #3b4fd0;
+}
+
+:root[data-color-theme="not-green-3"] {
+  --brand: #ffffcc;
+  --brand-rgb: 255, 255, 204;
+  --brand-strong: #6f5c00;
+}
+
+:root[data-color-theme="not-green-4"] {
+  --brand: #ffccff;
+  --brand-rgb: 255, 204, 255;
+  --brand-strong: #9c2a9c;
+}
+
+:root[data-color-theme="not-green-5"] {
+  --brand: #ccffff;
+  --brand-rgb: 204, 255, 255;
+  --brand-strong: #00696e;
+}
+
+:root[data-color-theme="really-light-green"] {
+  --brand: #ffffff;
+  --brand-rgb: 255, 255, 255;
+  --brand-strong: #1f6b3d;
+}
+
+/* Dark mode needs the pale end of each hue instead of the dark end. */
+
+:root[data-mode="dark"],
+:root[data-mode="dark"][data-color-theme="classic"] {
+  --brand-strong: #bff5cf;
+}
+
+:root[data-mode="dark"][data-color-theme="not-green-1"] {
+  --brand-strong: #ffb3b3;
+}
+
+:root[data-mode="dark"][data-color-theme="not-green-2"] {
+  --brand-strong: #b3bdff;
+}
+
+:root[data-mode="dark"][data-color-theme="not-green-3"] {
+  --brand-strong: #f5e6a3;
+}
+
+:root[data-mode="dark"][data-color-theme="not-green-4"] {
+  --brand-strong: #f2b3f2;
+}
+
+:root[data-mode="dark"][data-color-theme="not-green-5"] {
+  --brand-strong: #9fe8ee;
+}
+
+:root[data-mode="dark"][data-color-theme="really-light-green"] {
+  --brand-strong: #bff5cf;
+}
+
+/* ---- light / dark surface tokens ---- */
+
+:root,
+:root[data-mode="light"] {
+  --bg: #eef2f0;
+  --surface: rgba(255, 255, 255, 0.55);
+  --surface-strong: rgba(255, 255, 255, 0.78);
+  --surface-border: rgba(255, 255, 255, 0.65);
+  --ink: #121815;
+  --muted: #5b665f;
+  --shadow: 0 10px 30px rgba(20, 40, 30, 0.1);
+  --brand-ink: #1f6b3d;
+  --ok: #0f7234;
+  --warn: #a24b08;
+  --busy: #627288;
+  --error: #b91c1c;
+}
+
+:root[data-mode="dark"] {
+  --bg: #0c100e;
+  --surface: rgba(255, 255, 255, 0.06);
+  --surface-strong: rgba(255, 255, 255, 0.11);
+  --surface-border: rgba(255, 255, 255, 0.14);
+  --ink: #eef2ef;
+  --muted: #9aa7a0;
+  --shadow: 0 10px 34px rgba(0, 0, 0, 0.5);
+  --brand-ink: #bff5cf;
+  --ok: #4ade80;
+  --warn: #fbbf24;
+  --busy: #94a3b8;
+  --error: #fa9696;
+}
+
+/* Same in both modes: brand tints are pale whatever the mode. */
+:root {
+  --on-brand: #121815;
+  --radius: 20px;
+  --radius-sm: 12px;
+}
+
+/* flat, static colour derived from theme, no gradients */
 body {
-  background-color: var(--brand);
+  background-color: color-mix(in srgb, var(--brand) 10%, var(--bg));
   color: var(--ink);
   min-height: 100vh;
   overflow-x: hidden;
-  transition: background-color 0.25s ease;
+  transition: background-color 0.25s ease, color 0.25s ease;
 }
 
 img,
@@ -95,26 +191,20 @@ svg {
   max-width: 100%;
 }
 
-a {
-  color: var(--brand-strong);
-  text-decoration: none;
-}
-
 ::selection {
-  color: #fff;
-  background: var(--brand-strong);
-}
-
-button {
-  font: inherit;
-  color: inherit;
-  cursor: pointer;
+  color: var(--bg);
+  background: var(--brand-ink);
 }
 
 .icon {
   width: 1.15em;
   height: 1.15em;
   flex-shrink: 0;
+}
+
+[data-icon] {
+  display: inline-flex;
+  align-items: center;
 }
 
 /* -- Layout ---------------------------------------------------------------- */
@@ -169,12 +259,12 @@ button {
 /* -- Glass surfaces --------------------------------------------------------- */
 
 .glass {
-  background: var(--glass-bg);
-  border: 1px solid var(--glass-border);
+  background: var(--surface);
+  border: 1px solid var(--surface-border);
   border-radius: var(--radius);
-  backdrop-filter: blur(16px) saturate(140%);
-  -webkit-backdrop-filter: blur(16px) saturate(140%);
-  box-shadow: 0 8px 30px var(--glass-shadow);
+  backdrop-filter: blur(18px) saturate(150%);
+  -webkit-backdrop-filter: blur(18px) saturate(150%);
+  box-shadow: var(--shadow);
 }
 
 /* -- Buttons ----------------------------------------------------------------- */
@@ -185,8 +275,8 @@ button {
   gap: 8px;
   padding: 10px 16px;
   border-radius: var(--radius-sm);
-  border: 1px solid var(--glass-border);
-  background: var(--glass-bg-strong);
+  border: 1px solid var(--surface-border);
+  background: var(--surface-strong);
   color: var(--ink);
   font-size: 0.92rem;
   white-space: nowrap;
@@ -196,7 +286,7 @@ button {
 }
 
 .btn:hover {
-  box-shadow: 0 6px 18px var(--glass-shadow);
+  box-shadow: var(--shadow);
   transform: translateY(-1px);
 }
 
@@ -207,131 +297,198 @@ button {
 .btn:focus-visible,
 a:focus-visible,
 input:focus-visible,
+button:focus-visible,
 [tabindex]:focus-visible {
   outline: 3px solid var(--brand-strong);
   outline-offset: 2px;
 }
 
-.btn-icon {
-  padding: 10px;
-  border-radius: 999px;
-}
-
 .btn-primary {
-  background: var(--brand-strong);
-  color: var(--brand-strong-ink);
+  background: color-mix(in srgb, var(--brand) 55%, var(--surface-strong));
+  color: var(--on-brand);
   border-color: transparent;
 }
 
 .btn-coffee {
-  background: var(--glass-bg-strong);
+  background: var(--surface-strong);
 }
 
-/* -- Modal ------------------------------------------------------------------- */
+/* -- Icon button (theme trigger, modal close) ------------------------------- */
 
-.modal-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(10, 20, 15, 0.35);
-  display: flex;
+.icon-btn {
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 20px;
+  width: 42px;
+  height: 42px;
+  border-radius: 14px;
+  background: var(--surface-strong);
+  border: 1px solid var(--surface-border);
+  color: var(--ink);
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+
+.icon-btn:hover {
+  transform: translateY(-1px);
+}
+
+.icon-btn svg {
+  width: 20px;
+  height: 20px;
+}
+
+.icon-btn.small {
+  width: 34px;
+  height: 34px;
+}
+
+.icon-btn.small svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* -- Modal shell ------------------------------------------------------------- */
+
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
   z-index: 100;
-  opacity: 0;
-  transition: opacity 0.2s ease;
-}
-
-.modal-overlay[hidden] {
-  display: none;
-}
-
-.modal-overlay.is-open {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  background: rgba(10, 15, 12, 0.35);
+  padding: 12px;
   opacity: 1;
+  visibility: visible;
+  transition: opacity 0.2s ease, visibility 0s linear 0s;
+}
+
+.modal-backdrop.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.18s ease, visibility 0s linear 0.18s;
+}
+
+@media (min-width: 640px) {
+  .modal-backdrop {
+    align-items: center;
+  }
 }
 
 .modal {
   width: 100%;
   max-width: 420px;
-  padding: 22px;
-  background: var(--glass-bg-strong);
-  transform: translateY(10px) scale(0.97);
-  opacity: 0;
-  transition: transform 0.2s ease, opacity 0.2s ease;
-}
-
-.modal-overlay.is-open .modal {
-  transform: translateY(0) scale(1);
+  max-height: 85vh;
+  overflow-y: auto;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background: var(--surface-strong);
   opacity: 1;
+  transform: translateY(0) scale(1);
+  transition: transform 0.22s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.18s ease;
 }
 
-.modal-header {
+.modal-backdrop.hidden .modal {
+  opacity: 0;
+  transform: translateY(14px) scale(0.97);
+}
+
+.modal-head {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 14px;
 }
 
-.modal-header h2 {
-  font-size: 1.05rem;
+.modal-head h2 {
+  font-size: 1.1rem;
+  color: var(--brand-ink);
 }
 
-.modal-close {
-  border: none;
-  background: transparent;
-  padding: 6px;
-  border-radius: 999px;
+/* Section labels inside the modal: "Mode", "Brand colour". */
+.modal-section-label {
+  font-size: 0.85rem;
   color: var(--muted);
+  margin-top: 4px;
 }
 
-.modal-close:hover {
-  background: rgba(0, 0, 0, 0.06);
+body.modal-open {
+  overflow: hidden;
 }
 
-.theme-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-  gap: 10px;
+/* -- Mode toggle ------------------------------------------------------------- */
+
+.mode-toggle {
+  display: flex;
+  gap: 6px;
+  padding: 4px;
+  border-radius: 14px;
+  background: var(--surface);
 }
 
-.theme-swatch {
+.mode-btn {
+  flex: 1;
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 10px 12px;
-  border-radius: var(--radius-sm);
-  border: 1px solid var(--glass-border);
-  background: rgba(255, 255, 255, 0.5);
-  text-align: left;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px;
+  border-radius: 10px;
+  font-size: 0.85rem;
+  color: var(--muted);
+  transition: background 0.15s ease, color 0.15s ease;
 }
 
-.theme-swatch:hover {
-  background: rgba(255, 255, 255, 0.75);
-}
-
-.theme-swatch[aria-pressed="true"] {
-  border-color: var(--brand-strong);
-  box-shadow: 0 0 0 2px var(--brand-strong) inset;
-}
-
-.theme-swatch .swatch-dot {
-  width: 26px;
-  height: 26px;
-  border-radius: 50%;
-  border: 1px solid rgba(0, 0, 0, 0.12);
-  flex-shrink: 0;
-}
-
-.theme-swatch .swatch-check {
-  margin-left: auto;
+.mode-btn svg {
   width: 16px;
   height: 16px;
-  color: var(--brand-strong);
-  visibility: hidden;
 }
 
-.theme-swatch[aria-pressed="true"] .swatch-check {
-  visibility: visible;
+.mode-btn.active {
+  background: color-mix(in srgb, var(--brand) 55%, var(--surface-strong));
+  color: var(--on-brand);
+}
+
+/* -- Swatch grid ------------------------------------------------------------- */
+
+.swatch-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+}
+
+.swatch {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px;
+  border-radius: 14px;
+  background: var(--surface);
+  border: 1px solid var(--surface-border);
+  font-size: 0.78rem;
+  text-align: left;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+/* Ringed in its own colour, plus a containment ring. On a light modal the
+   pale swatches reach only 1:1 against the surface on their own, so the
+   outer ring is what actually carries the active state, at 3.4:1. */
+.swatch.active {
+  border-color: var(--swatch-color);
+  box-shadow:
+    0 0 0 2px var(--swatch-color),
+    0 0 0 3px color-mix(in srgb, var(--ink) 50%, transparent);
+}
+
+.swatch-dot {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--swatch-color);
+  border: 1px solid color-mix(in srgb, var(--ink) 30%, transparent);
+  flex-shrink: 0;
 }
 
 /* -- Footer ------------------------------------------------------------------ */
@@ -376,15 +533,17 @@ input:focus-visible,
   .btn {
     padding: 9px 12px;
   }
-
-  .modal {
-    padding: 18px;
-  }
 }
 
 @media (max-width: 520px) {
   .topbar-actions .btn-label {
     display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .swatch-grid {
+    grid-template-columns: 1fr;
   }
 }
 
@@ -415,7 +574,7 @@ input:focus-visible,
   align-items: center;
   justify-content: center;
   gap: 10px;
-  background: rgba(255, 255, 255, 0.35);
+  background: var(--surface);
   border-radius: var(--radius-sm);
   color: var(--muted);
   font-size: 0.9rem;
@@ -448,15 +607,5 @@ input:focus-visible,
   }
   100% {
     transform: translateY(16px) rotate(10deg);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
   }
 }

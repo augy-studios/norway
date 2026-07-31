@@ -1,4 +1,4 @@
-const CACHE = "norway-v17";
+const CACHE = "norway-v18";
 const API_CACHE = "norway-api-v15";
 
 const ASSETS = [
@@ -7,6 +7,7 @@ const ASSETS = [
   "/assets/css/theme.css",
   "/assets/css/home.css",
   "/assets/js/icons.js",
+  "/assets/js/ui.js",
   "/assets/js/theme.js",
   "/assets/js/home.js",
   "/stats",

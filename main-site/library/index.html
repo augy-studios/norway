@@ -4,11 +4,15 @@
 <head>
     <script>
         (function () {
+            var k = 'norway';
             try {
-                var t = localStorage.getItem('norway-theme') || 'classic';
-                document.documentElement.setAttribute('data-theme', t);
+                var m = localStorage.getItem(k + '.mode') || 'light';
+                var c = localStorage.getItem(k + '.colorTheme') || localStorage.getItem('norway-theme') || 'classic';
+                document.documentElement.setAttribute('data-mode', m);
+                document.documentElement.setAttribute('data-color-theme', c);
             } catch (e) {
-                document.documentElement.setAttribute('data-theme', 'classic');
+                document.documentElement.setAttribute('data-mode', 'light');
+                document.documentElement.setAttribute('data-color-theme', 'classic');
             }
         })();
     </script>
@@ -35,7 +39,7 @@
 
     <link rel="stylesheet" href="/assets/css/theme.css">
     <link rel="stylesheet" href="/library/library.css">
-    <meta name="theme-color" content="#ccffcc" data-theme-meta />
+    <meta name="theme-color" content="#ccffcc" />
 
     <link rel="apple-touch-icon" href="/TAN-main.png">
     <link rel="icon" href="/favicon.ico">
@@ -50,10 +54,12 @@
                 <span class="site-title">There's Absolutely Norway<small>UwU Apps</small></span>
             </div>
             <div class="topbar-actions">
-                <button type="button" id="theme-toggle" class="btn btn-icon" aria-haspopup="dialog"
-                    aria-label="Choose theme"></button>
+                <button class="icon-btn" id="themeBtn" type="button" aria-haspopup="dialog" aria-label="Theme">
+                    <span data-icon="sun"></span>
+                </button>
                 <a class="btn btn-coffee" href="https://donate.stripe.com/28o2akeAr3hv0DK6oo" target="_blank"
                     rel="noopener noreferrer" aria-label="Buy Augy a Coffee">
+                    <span data-icon="coffee"></span>
                     <span class="btn-label">Buy Augy a Coffee</span>
                 </a>
             </div>
@@ -124,17 +130,26 @@
         </footer>
     </div>
 
-    <div class="modal-overlay" id="theme-modal" hidden role="dialog" aria-modal="true" aria-labelledby="theme-modal-title">
-        <div class="modal glass">
-            <div class="modal-header">
-                <h2 id="theme-modal-title">Choose a theme</h2>
-                <button type="button" class="modal-close" aria-label="Close"></button>
+    <div class="modal-backdrop hidden" id="themeModal">
+        <div class="modal glass" role="dialog" aria-modal="true" aria-labelledby="themeModalTitle">
+            <div class="modal-head">
+                <h2 id="themeModalTitle">Theme</h2>
+                <button class="icon-btn small" type="button" data-close-modal="themeModal" aria-label="Close">
+                    <span data-icon="close"></span>
+                </button>
             </div>
-            <div class="theme-grid"></div>
+            <p class="modal-section-label">Mode</p>
+            <div class="mode-toggle" id="modeToggle">
+                <button class="mode-btn" type="button" data-mode="light" aria-pressed="false"><span data-icon="sun"></span>Light</button>
+                <button class="mode-btn" type="button" data-mode="dark" aria-pressed="false"><span data-icon="moon"></span>Dark</button>
+            </div>
+            <p class="modal-section-label">Brand colour</p>
+            <div class="swatch-grid" id="swatchGrid"></div>
         </div>
     </div>
 
     <script src="/assets/js/icons.js"></script>
+    <script src="/assets/js/ui.js"></script>
     <script src="/assets/js/theme.js"></script>
     <script src="/library/library.js"></script>
 </body>
