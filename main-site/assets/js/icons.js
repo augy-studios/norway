@@ -37,6 +37,8 @@ window.NorwayIcons = {
     '<svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="2"/><path d="M12 2.5v3M12 18.5v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2.5 12h3M18.5 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>',
   moon:
     '<svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+  clock:
+    '<svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/><path d="M12 7v5l3 3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>',
   cloudSun:
     '<svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M8 8.5a3.3 3.3 0 0 1 6.4-1.1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M6.5 19a4 4 0 0 1-.3-8 5 5 0 0 1 9.6-1.4A3.7 3.7 0 0 1 15.5 17" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>',
   cloudRain:
